@@ -29,6 +29,8 @@ namespace JY.Stock
         public int CurPrice { get { return _curPrice; } }
         public int Count = 0;
 
+        public double AverageTradePrice { get { return _tradeMoney / (double)_tradeVolume; } }
+
         
     }
 
