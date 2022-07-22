@@ -29,19 +29,35 @@ namespace JY
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCheckStock));
+            this.axGiExpertControl = new AxGIEXPERTCONTROLLib.AxGiExpertControl();
+            ((System.ComponentModel.ISupportInitialize)(this.axGiExpertControl)).BeginInit();
             this.SuspendLayout();
+            // 
+            // axGiExpertControl
+            // 
+            this.axGiExpertControl.Enabled = true;
+            this.axGiExpertControl.Location = new System.Drawing.Point(3628, 278);
+            this.axGiExpertControl.Name = "axGiExpertControl";
+            this.axGiExpertControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axGiExpertControl.OcxState")));
+            this.axGiExpertControl.Size = new System.Drawing.Size(136, 50);
+            this.axGiExpertControl.TabIndex = 0;
             // 
             // FormCheckStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.axGiExpertControl);
             this.Name = "FormCheckStock";
             this.Text = "Stocks";
+            ((System.ComponentModel.ISupportInitialize)(this.axGiExpertControl)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private AxGIEXPERTCONTROLLib.AxGiExpertControl axGiExpertControl;
     }
 }

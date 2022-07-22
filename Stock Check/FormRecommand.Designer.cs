@@ -29,9 +29,9 @@ namespace JY
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRecommand));
             this.button_Egyukdo = new System.Windows.Forms.Button();
             this.dataGridView_Egyukdo = new System.Windows.Forms.DataGridView();
@@ -684,16 +684,16 @@ namespace JY
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(2, 273);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(545, 300);
             this.chart1.TabIndex = 45;
             this.chart1.Text = "chart1";
@@ -758,10 +758,10 @@ namespace JY
             // indi
             // 
             this.indi.Enabled = true;
-            this.indi.Location = new System.Drawing.Point(32466, 4169);
+            this.indi.Location = new System.Drawing.Point(23, 46);
             this.indi.Name = "indi";
             this.indi.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("indi.OcxState")));
-            this.indi.Size = new System.Drawing.Size(170, 63);
+            this.indi.Size = new System.Drawing.Size(136, 39);
             this.indi.TabIndex = 13;
             // 
             // button_Test
@@ -813,7 +813,7 @@ namespace JY
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(341, 252);
+            this.ClientSize = new System.Drawing.Size(368, 308);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox1);

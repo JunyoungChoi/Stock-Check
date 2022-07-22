@@ -13,12 +13,11 @@ namespace JY
 {
     public partial class FormCheckStock : Form
     {
-        private GIEXPERTCONTROLLib.GiExpertControl _gi;
-        public FormCheckStock(GIEXPERTCONTROLLib.GiExpertControl gi)
+        public FormCheckStock()
         {
             InitializeComponent();
 
-         
+            axGiExpertControl
         }
     }
 }
