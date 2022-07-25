@@ -11,7 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace JY
+namespace JY.Stock
 {
     public partial class FormRTCheck : Form
     {
@@ -33,7 +33,7 @@ namespace JY
         Task taskSendMail;
         Queue<MailData> queueSendMail;
 
-        MyIni ini = new MyIni(System.IO.Path.Combine(Application.StartupPath, "Setting.ini"));
+        IniStock ini = new IniStock(System.IO.Path.Combine(Application.StartupPath, "Setting.ini"));
 
 
         public FormRTCheck(AxGIEXPERTCONTROLLib.AxGiExpertControl axGiExpertControl)

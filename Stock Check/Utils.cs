@@ -9,7 +9,7 @@ using System.Threading;
 using System.IO;
 using System.Diagnostics;
 
-namespace JY
+namespace JY.Util
 {
     class Utils
     {

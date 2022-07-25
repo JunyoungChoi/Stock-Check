@@ -75,29 +75,6 @@ namespace JY
                 }
             }
         }
-        public double IniReadLuminanceIntegrationTime()
-        {
-            StringBuilder temp = new StringBuilder(255);
-            GetPrivateProfileString("Last capture", "Luminance", "0.1", temp,
-                                        255, this._path);
-
-            return double.Parse(temp.ToString());
-        }
-        public Array IniReadColorIntegrationTime()
-        {
-            StringBuilder temp = new StringBuilder(255);
-            Array ret = new string[6];
-            
-            for (int i = 0; i < 6; i++) 
-            {
-                GetPrivateProfileString("Last capture", string.Format("Color {0}", i), "0", temp,
-                                            255, this._path);
-
-                ret.SetValue(temp.ToString(), i);
-            }
-
-            return ret;
-        }
 
         // 해당 section 안의 모든 키 값 가져오기
         public string[] GetEntryNames(string section)

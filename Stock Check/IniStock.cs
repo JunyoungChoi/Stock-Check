@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JY
+namespace JY.Stock
 {
-    public class MyIni : JY.Ini
+    public class IniStock : JY.Ini
     {
-        public MyIni(string filePath) : base(filePath)
+        public IniStock(string filePath) : base(filePath)
         {
             
         }

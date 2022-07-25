@@ -14,9 +14,9 @@ using System.Net;
 using System.Net.Mail;
 using JY.ExtensionMethods;
 
-namespace JY
+namespace JY.Stock
 {
-    public partial class FormRecommand : Form
+    public partial class FormSearchConditionStock : Form
     {
         private Label forAck;
 
@@ -81,7 +81,7 @@ namespace JY
         public delegate void StopRTGamsiing();
         public event StopRTGamsiing StopRTGamsi;
 
-        public FormRecommand()
+        public FormSearchConditionStock()
         {
             InitializeComponent();
 

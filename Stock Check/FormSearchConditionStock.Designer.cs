@@ -1,7 +1,7 @@
 ﻿
-namespace JY
+namespace JY.Stock
 {
-    partial class FormRecommand
+    partial class FormSearchConditionStock
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -32,7 +32,7 @@ namespace JY
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRecommand));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSearchConditionStock));
             this.button_Egyukdo = new System.Windows.Forms.Button();
             this.dataGridView_Egyukdo = new System.Windows.Forms.DataGridView();
             this.Column_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -758,10 +758,10 @@ namespace JY
             // indi
             // 
             this.indi.Enabled = true;
-            this.indi.Location = new System.Drawing.Point(23, 46);
+            this.indi.Location = new System.Drawing.Point(187, 262);
             this.indi.Name = "indi";
             this.indi.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("indi.OcxState")));
-            this.indi.Size = new System.Drawing.Size(136, 39);
+            this.indi.Size = new System.Drawing.Size(170, 63);
             this.indi.TabIndex = 13;
             // 
             // button_Test
@@ -809,7 +809,7 @@ namespace JY
             this.textBox2.Size = new System.Drawing.Size(100, 21);
             this.textBox2.TabIndex = 51;
             // 
-            // FormRecommand
+            // FormSearchConditionStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -846,8 +846,8 @@ namespace JY
             this.Controls.Add(this.textBox_min5);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FormRecommand";
-            this.Text = "Form1";
+            this.Name = "FormSearchConditionStock";
+            this.Text = "조건부 검색";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Egyukdo)).EndInit();

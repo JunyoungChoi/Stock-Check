@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JY
+namespace JY.Stock
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace JY
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormRecommand());
+            Application.Run(new FormSearchConditionStock());
         }
     }
 }

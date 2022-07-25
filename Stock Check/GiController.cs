@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using AxGIEXPERTCONTROLLib;
 using GIEXPERTCONTROLLib;
 
-namespace JY.GIController
+namespace JY.Stock
 {
     class GiController
     {

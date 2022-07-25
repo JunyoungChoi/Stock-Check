@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1D7BE7EE-3923-4908-9435-2A007B616569}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>JY</RootNamespace>
-    <AssemblyName>JY</AssemblyName>
+    <RootNamespace>JY.Stock</RootNamespace>
+    <AssemblyName>JY.Stock</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxInterop.GIEXPERTCONTROLLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\AxInterop.GIEXPERTCONTROLLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.GIEXPERTCONTROLLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>lib\Interop.GIEXPERTCONTROLLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -48,13 +57,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Config.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="FormRecommand.cs">
+    <Compile Include="FormConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRecommand.Designer.cs">
-      <DependentUpon>FormRecommand.cs</DependentUpon>
+    <Compile Include="FormConfig.Designer.cs">
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormExample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExample.Designer.cs">
+      <DependentUpon>FormExample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSearchConditionStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSearchConditionStock.Designer.cs">
+      <DependentUpon>FormSearchConditionStock.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRTCheck.cs">
       <SubType>Form</SubType>
@@ -62,27 +84,43 @@
     <Compile Include="FormRTCheck.Designer.cs">
       <DependentUpon>FormRTCheck.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCheckStock.cs">
+    <Compile Include="FormLogIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCheckStock.Designer.cs">
-      <DependentUpon>FormCheckStock.cs</DependentUpon>
+    <Compile Include="FormLogIn.Designer.cs">
+      <DependentUpon>FormLogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockFunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockFunction.Designer.cs">
+      <DependentUpon>FormStockFunction.cs</DependentUpon>
     </Compile>
     <Compile Include="GiController.cs" />
+    <Compile Include="Config\InfoLogIn.cs" />
     <Compile Include="Ini.cs" />
-    <Compile Include="MyIni.cs" />
+    <Compile Include="IniStock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="FormRecommand.resx">
-      <DependentUpon>FormRecommand.cs</DependentUpon>
+    <EmbeddedResource Include="FormConfig.resx">
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExample.resx">
+      <DependentUpon>FormExample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSearchConditionStock.resx">
+      <DependentUpon>FormSearchConditionStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRTCheck.resx">
       <DependentUpon>FormRTCheck.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCheckStock.resx">
-      <DependentUpon>FormCheckStock.cs</DependentUpon>
+    <EmbeddedResource Include="FormLogIn.resx">
+      <DependentUpon>FormLogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockFunction.resx">
+      <DependentUpon>FormStockFunction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -94,6 +132,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Config\Config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -114,25 +155,14 @@
     <Content Include="lib\Interop.GIEXPERTCONTROLLib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="AxGIEXPERTCONTROLLib">
-      <Guid>{7ADA4C2A-AC85-491A-9679-B97AA793BD5A}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="GIEXPERTCONTROLLib">
-      <Guid>{7ADA4C2A-AC85-491A-9679-B97AA793BD5A}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <Content Include="resource\free-icon-alarm-bell-1059167.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\free-icon-increase-4825706.png" />
+    <Content Include="resource\loupe.png" />
+    <Content Include="resource\rights.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

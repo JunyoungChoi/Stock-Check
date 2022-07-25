@@ -1,5 +1,5 @@
 ﻿
-namespace JY
+namespace JY.Stock
 {
     partial class FormRTCheck
     {
