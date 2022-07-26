@@ -64,12 +64,12 @@ namespace JY.Stock
         {
             if (forStatus.Checked)
             {
-                button_AllSet.Text = "Stop";
+                button_AllStart.Text = "Stop";
                 label_Status.Text = "Gamsi";
             }
             else
             {
-                button_AllSet.Text = "All Start";
+                button_AllStart.Text = "All Start";
                 label_Status.Text = "Non-Gamsi";
             }
         }
@@ -130,11 +130,11 @@ namespace JY.Stock
         {
             if (IsGamsing)
             {
-                button_AllSet.Text = "Stop";
+                button_AllStart.Text = "Stop";
             }
             else
             {
-                button_AllSet.Text = "All Start";
+                button_AllStart.Text = "All Start";
             }
 
             queueUpdatePrice = new Queue<string>();
@@ -233,7 +233,7 @@ namespace JY.Stock
 
             IsGamsing = true;
 
-            button_AllSet.Text = "Stop";
+            button_AllStart.Text = "Stop";
 
             fromAddDelete = true;
         }
