@@ -15,6 +15,7 @@ namespace JY.Stock
 {
     public partial class FormRTCheck : Form
     {
+        // int a =3 3
         private readonly float percentage = 0.015f;
 
         private CheckBox forStatus;
