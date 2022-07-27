@@ -229,7 +229,7 @@ namespace JY.Stock
 
         private void button_Sequence_Click(object sender, EventArgs e)
         {
-            button_Sequence.Enabled = false;
+                    button_Sequence.Enabled = false;
             label14.Text = $"계산중";
 
             dataGridView_Recommand.Rows.Clear();
@@ -263,9 +263,9 @@ namespace JY.Stock
             forAck.Visible = false;
             forAck.VisibleChanged += ForAck_VisibleChanged;
 
-            ExtensionMethods.DoubleBuffered(dataGridView_Egyukdo, true);
-            ExtensionMethods.DoubleBuffered(dataGridView_TradingMoneyVolume, true);
-            ExtensionMethods.DoubleBuffered(dataGridView_Recommand, true);
+            ExtensionMethods.ExtensionMethods.DoubleBuffered(dataGridView_Egyukdo, true);
+            ExtensionMethods.ExtensionMethods.DoubleBuffered(dataGridView_TradingMoneyVolume, true);
+            ExtensionMethods.ExtensionMethods.DoubleBuffered(dataGridView_Recommand, true);
 
             chart1.Series.Clear();
         }
