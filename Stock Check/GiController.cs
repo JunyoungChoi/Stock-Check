@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using AxGIEXPERTCONTROLLib;
 using GIEXPERTCONTROLLib;
 
-namespace JY.Stock
+namespace JY.StockChecker
 {
     class GiController
     {
@@ -20,7 +20,7 @@ namespace JY.Stock
 
         private AutoResetEvent dataReceiveEvent = new AutoResetEvent(false);
 
-        public delegate void ReceiveRTDataHandler(string rtType, Stock.Stock stock);
+        public delegate void ReceiveRTDataHandler(string rtType, Stock stock);
         public event ReceiveRTDataHandler OnReceiveRTData;
 
         private QueryTR _curQueryTR;
@@ -129,7 +129,7 @@ namespace JY.Stock
                         string lowPriceTime = _giControl.GetSingleData((short)ColumnSC.LowPriceTime).ToString();
                         float volumePower = (float)_giControl.GetSingleData((short)ColumnSC.VolumePower);
 
-                        Stock.Stock stock = new Stock.Stock(shortCode, curPrice, prevPrice, tradingMoney, tradingVolume, startPrice, highPrice, lowPrice, highPriceTime, lowPriceTime, volumePower);
+                        Stock stock = new Stock(shortCode, curPrice, prevPrice, tradingMoney, tradingVolume, startPrice, highPrice, lowPrice, highPriceTime, lowPriceTime, volumePower);
 
                         ReceivedRTData(rtType, stock);
                     }
@@ -161,7 +161,7 @@ namespace JY.Stock
 
             for (int i = 0; i < parameters.Length; i++)
             {
-                _giControl.SetSingleData((short)i, parameters[i]);
+                _giControl.SetSingleData((short)i, parameters[i].ToString());
             }
 
             _giControl.RequestData();
@@ -183,7 +183,7 @@ namespace JY.Stock
             _giControl.RequestRTReg("SC", shortCode);
         }
         
-        protected void ReceivedRTData(string rtType, Stock.Stock stock)
+        protected void ReceivedRTData(string rtType, Stock stock)
         {
             if (OnReceiveRTData != null)
             {
