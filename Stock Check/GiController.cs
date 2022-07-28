@@ -70,35 +70,18 @@ namespace JY.StockChecker
         {
             Debug.WriteLine("Indi_ReceiveData");
 
-            int row = _giControl.GetMultiRowCount();
-            int column;
-
-            switch (_curQueryTR)
+            try
             {
-                case QueryTR.TR_1206:
-                    column = 94;
-                    break;
-
-                case QueryTR.TR_1870:
-                case QueryTR.TR_SCHART:
-                    column = 11;
-                    break;
-
-                default:
-                    throw new NotImplementedException();
+                recvData = (string[,])_giControl.GetMultiBlockData();
             }
-
-            recvData = new string[row,column];
-
-            for (int i = 0; i < row; i++)
+            catch (Exception ex)
             {
-                for (int j = 0; j < column; j++)
-                {
-                    recvData[i,j] = _giControl.GetMultiData((short)i, (short)j).ToString();
-                }
+                recvData = null;
             }
-
-            dataReceiveEvent.Set();
+            finally
+            {
+                dataReceiveEvent.Set();
+            }
         }
 
         /// <summary>
@@ -114,20 +97,37 @@ namespace JY.StockChecker
                 case "SC":
                     try
                     {
-                        string shortCode = _giControl.GetSingleData((short)ColumnSC.ShortCode).ToString();
-                        int curPrice = (int)_giControl.GetSingleData((short)ColumnSC.CurPrice);
-                        int dayToDayComparison = (int)_giControl.GetSingleData((short)ColumnSC.DayToDayComparison);
-                        int dayToDayPrice = (int)_giControl.GetSingleData((short)ColumnSC.DayToDayPrice);
+                        string[] recvData = (string[])_giControl.GetSingleBlockData();
+
+                        string shortCode = recvData[(int)ColumnSC.ShortCode];
+                        int curPrice = int.Parse(recvData[(int)ColumnSC.CurPrice]);
+                        int dayToDayComparison = int.Parse(recvData[(int)ColumnSC.DayToDayComparison]);
+                        int dayToDayPrice = int.Parse(recvData[(int)ColumnSC.DayToDayPrice]);
                         int prevPrice = dayToDayComparison == 2 ? curPrice + dayToDayPrice : curPrice - dayToDayPrice;
-                        float dayToDayRatio = dayToDayComparison == 2 ? (float)_giControl.GetSingleData((short)ColumnSC.DayToDayRatio) : -(float)_giControl.GetSingleData((short)ColumnSC.DayToDayRatio);
-                        long tradingVolume = (long)_giControl.GetSingleData((short)ColumnSC.TradingVolume);
-                        long tradingMoney = (long)_giControl.GetSingleData((short)ColumnSC.TradingMoney);
-                        int startPrice = (int)_giControl.GetSingleData((short)ColumnSC.StartPrice);
-                        int highPrice = (int)_giControl.GetSingleData((short)ColumnSC.HighPrice);
-                        int lowPrice = (int)_giControl.GetSingleData((short)ColumnSC.LowPrice);
-                        string highPriceTime = _giControl.GetSingleData((short)ColumnSC.HighPriceTime).ToString();
-                        string lowPriceTime = _giControl.GetSingleData((short)ColumnSC.LowPriceTime).ToString();
-                        float volumePower = (float)_giControl.GetSingleData((short)ColumnSC.VolumePower);
+                        float dayToDayRatio = dayToDayComparison == 2 ? float.Parse(recvData[(int)ColumnSC.DayToDayRatio]) : -float.Parse(recvData[(int)ColumnSC.DayToDayRatio]);
+                        long tradingVolume = long.Parse(recvData[(int)ColumnSC.TradingVolume]);
+                        long tradingMoney = long.Parse(recvData[(int)ColumnSC.TradingMoney]);
+                        int startPrice = int.Parse(recvData[(int)ColumnSC.StartPrice]);
+                        int highPrice = int.Parse(recvData[(int)ColumnSC.HighPrice]);
+                        int lowPrice = int.Parse(recvData[(int)ColumnSC.LowPrice]);
+                        string highPriceTime = recvData[(int)ColumnSC.HighPriceTime];
+                        string lowPriceTime = recvData[(int)ColumnSC.LowPriceTime];
+                        float volumePower = float.Parse(recvData[(int)ColumnSC.VolumePower]);
+
+                        //string shortCode = _giControl.GetSingleData((short)ColumnSC.ShortCode).ToString();
+                        //int curPrice = (int)_giControl.GetSingleData((short)ColumnSC.CurPrice);
+                        //int dayToDayComparison = (int)_giControl.GetSingleData((short)ColumnSC.DayToDayComparison);
+                        //int dayToDayPrice = (int)_giControl.GetSingleData((short)ColumnSC.DayToDayPrice);
+                        //int prevPrice = dayToDayComparison == 2 ? curPrice + dayToDayPrice : curPrice - dayToDayPrice;
+                        //float dayToDayRatio = dayToDayComparison == 2 ? (float)_giControl.GetSingleData((short)ColumnSC.DayToDayRatio) : -(float)_giControl.GetSingleData((short)ColumnSC.DayToDayRatio);
+                        //long tradingVolume = (long)_giControl.GetSingleData((short)ColumnSC.TradingVolume);
+                        //long tradingMoney = (long)_giControl.GetSingleData((short)ColumnSC.TradingMoney);
+                        //int startPrice = (int)_giControl.GetSingleData((short)ColumnSC.StartPrice);
+                        //int highPrice = (int)_giControl.GetSingleData((short)ColumnSC.HighPrice);
+                        //int lowPrice = (int)_giControl.GetSingleData((short)ColumnSC.LowPrice);
+                        //string highPriceTime = _giControl.GetSingleData((short)ColumnSC.HighPriceTime).ToString();
+                        //string lowPriceTime = _giControl.GetSingleData((short)ColumnSC.LowPriceTime).ToString();
+                        //float volumePower = (float)_giControl.GetSingleData((short)ColumnSC.VolumePower);
 
                         Stock stock = new Stock(shortCode, curPrice, prevPrice, tradingMoney, tradingVolume, startPrice, highPrice, lowPrice, highPriceTime, lowPriceTime, volumePower);
 
@@ -156,6 +156,8 @@ namespace JY.StockChecker
         public string[,] GetData(QueryTR tr, params object[] parameters)
         {
             string[,] datas = null;
+
+            recvData = null;
 
             setQuery(tr);
 
