@@ -150,7 +150,7 @@ namespace JY.StockChecker
             this.groupBox1.Size = new System.Drawing.Size(282, 150);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Set";
+            this.groupBox1.Text = "주식";
             // 
             // tableLayoutPanel_RT
             // 
