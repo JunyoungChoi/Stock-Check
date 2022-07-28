@@ -14,7 +14,7 @@ using System.Net;
 using System.Net.Mail;
 using JY.ExtensionMethods;
 
-namespace JY.Stock
+namespace JY.StockChecker
 {
     public partial class FormSearchConditionStock : Form
     {

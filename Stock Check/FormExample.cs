@@ -10,7 +10,7 @@ using System.IO;
 using System.Windows.Forms;
 using AxGIEXPERTCONTROLLib;
 
-namespace JY.Stock.Example
+namespace JY.StockChecker.Example
 {
     public partial class FormExample : Form
     {

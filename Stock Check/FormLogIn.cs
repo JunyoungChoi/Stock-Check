@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace JY.Stock
+namespace JY.StockChecker
 {
     public partial class FormLogIn : Form
     {

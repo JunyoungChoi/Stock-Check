@@ -1,5 +1,5 @@
 ﻿
-namespace JY.Stock
+namespace JY.StockChecker
 {
     partial class FormRTCheck
     {
@@ -40,20 +40,20 @@ namespace JY.Stock
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel_RT = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button_AllStart = new System.Windows.Forms.Button();
-            this.button_ChangePrice = new System.Windows.Forms.Button();
-            this.button_Remove = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button_Add = new System.Windows.Forms.Button();
+            this.button_AllStart = new System.Windows.Forms.Button();
+            this.button_Remove = new System.Windows.Forms.Button();
+            this.button_ChangePrice = new System.Windows.Forms.Button();
             this.dataGridView_GamsiList = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel_RT.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GamsiList)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_Gamsi
@@ -138,7 +138,7 @@ namespace JY.Stock
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 27);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Price";
+            this.label3.Text = "내 가격";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox1
@@ -186,6 +186,37 @@ namespace JY.Stock
             this.panel1.Size = new System.Drawing.Size(270, 43);
             this.panel1.TabIndex = 8;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.button_Add, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button_AllStart, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button_Remove, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button_ChangePrice, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(270, 43);
+            this.tableLayoutPanel1.TabIndex = 11;
+            // 
+            // button_Add
+            // 
+            this.button_Add.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_Add.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button_Add.Location = new System.Drawing.Point(204, 3);
+            this.button_Add.Name = "button_Add";
+            this.button_Add.Size = new System.Drawing.Size(63, 37);
+            this.button_Add.TabIndex = 3;
+            this.button_Add.Text = "추가";
+            this.button_Add.UseVisualStyleBackColor = true;
+            this.button_Add.Click += new System.EventHandler(this.button1_Click);
+            // 
             // button_AllStart
             // 
             this.button_AllStart.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -196,18 +227,6 @@ namespace JY.Stock
             this.button_AllStart.Text = "All start";
             this.button_AllStart.UseVisualStyleBackColor = true;
             this.button_AllStart.Click += new System.EventHandler(this.button_AllSet_Click);
-            // 
-            // button_ChangePrice
-            // 
-            this.button_ChangePrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_ChangePrice.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button_ChangePrice.Location = new System.Drawing.Point(70, 3);
-            this.button_ChangePrice.Name = "button_ChangePrice";
-            this.button_ChangePrice.Size = new System.Drawing.Size(61, 37);
-            this.button_ChangePrice.TabIndex = 9;
-            this.button_ChangePrice.Text = "변경";
-            this.button_ChangePrice.UseVisualStyleBackColor = true;
-            this.button_ChangePrice.Click += new System.EventHandler(this.button_ChangePrice_Click);
             // 
             // button_Remove
             // 
@@ -221,17 +240,17 @@ namespace JY.Stock
             this.button_Remove.UseVisualStyleBackColor = true;
             this.button_Remove.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button_Add
+            // button_ChangePrice
             // 
-            this.button_Add.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_Add.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button_Add.Location = new System.Drawing.Point(204, 3);
-            this.button_Add.Name = "button_Add";
-            this.button_Add.Size = new System.Drawing.Size(63, 37);
-            this.button_Add.TabIndex = 3;
-            this.button_Add.Text = "추가";
-            this.button_Add.UseVisualStyleBackColor = true;
-            this.button_Add.Click += new System.EventHandler(this.button1_Click);
+            this.button_ChangePrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_ChangePrice.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button_ChangePrice.Location = new System.Drawing.Point(70, 3);
+            this.button_ChangePrice.Name = "button_ChangePrice";
+            this.button_ChangePrice.Size = new System.Drawing.Size(61, 37);
+            this.button_ChangePrice.TabIndex = 9;
+            this.button_ChangePrice.Text = "변경";
+            this.button_ChangePrice.UseVisualStyleBackColor = true;
+            this.button_ChangePrice.Click += new System.EventHandler(this.button_ChangePrice_Click);
             // 
             // dataGridView_GamsiList
             // 
@@ -265,25 +284,6 @@ namespace JY.Stock
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(121, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.button_Add, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button_AllStart, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button_Remove, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button_ChangePrice, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(270, 43);
-            this.tableLayoutPanel1.TabIndex = 11;
-            // 
             // FormRTCheck
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -303,10 +303,10 @@ namespace JY.Stock
             this.tableLayoutPanel_RT.ResumeLayout(false);
             this.tableLayoutPanel_RT.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GamsiList)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,5 +1,5 @@
 ﻿
-namespace JY.Stock
+namespace JY.StockChecker
 {
     partial class FormStockFunction
     {

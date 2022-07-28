@@ -1,5 +1,5 @@
 ﻿
-namespace JY.Stock.Example
+namespace JY.StockChecker.Example
 {
     partial class FormExample
     {

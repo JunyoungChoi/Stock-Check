@@ -11,7 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace JY.Stock
+namespace JY.StockChecker
 {
     public partial class FormRTCheck : Form
     {

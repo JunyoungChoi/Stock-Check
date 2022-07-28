@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AxGIEXPERTCONTROLLib;
-namespace JY.Stock
+namespace JY.StockChecker
 {
     public partial class FormStockFunction : Form
     {
