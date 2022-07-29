@@ -20,10 +20,14 @@ namespace JY.StockChecker
 
         private AutoResetEvent dataReceiveEvent = new AutoResetEvent(false);
 
-        public delegate void ReceiveRTDataHandler(string rtType, Stock stock);
+        public delegate void ReceiveRTDataHandler(string rtType, RtScStock stock);
         public event ReceiveRTDataHandler OnReceiveRTData;
 
         private QueryTR _curQueryTR;
+
+        private const int RECEIVE_TIMEOUT = 3000;
+
+        private System.Threading.Timer timerReceiveTimeOut;
 
         enum ColumnSC
         {
@@ -48,7 +52,6 @@ namespace JY.StockChecker
             TR_1870,    // 이격도
             TR_SCHART,  // 시간별 체결량 및 거래대금
         }
-
 
         public bool IsLogin { get { return _isLogin; } }
 
@@ -129,7 +132,7 @@ namespace JY.StockChecker
                         //string lowPriceTime = _giControl.GetSingleData((short)ColumnSC.LowPriceTime).ToString();
                         //float volumePower = (float)_giControl.GetSingleData((short)ColumnSC.VolumePower);
 
-                        Stock stock = new Stock(shortCode, curPrice, prevPrice, tradingMoney, tradingVolume, startPrice, highPrice, lowPrice, highPriceTime, lowPriceTime, volumePower);
+                        RtScStock stock = new RtScStock(shortCode, curPrice, prevPrice, tradingMoney, tradingVolume, startPrice, highPrice, lowPrice, highPriceTime, lowPriceTime, volumePower);
 
                         ReceivedRTData(rtType, stock);
                     }
@@ -147,10 +150,71 @@ namespace JY.StockChecker
             }
         }
 
+        public List<string> FilteringStockDisparity(float? min5, float? max5, float? min20, float? max20, float? min60, float? max60, float? min120, float? max120)
+        {
+            List<string> filteringDatas = new List<string>();
+
+            if (!min5.HasValue) min5 = 0;
+            if (!max5.HasValue) max5 = 500;
+            if (!min20.HasValue) min20 = 0;
+            if (!max20.HasValue) max20 = 500;
+            if (!min60.HasValue) min60 = 0;
+            if (!max60.HasValue) max60 = 500;
+            if (!min120.HasValue) min120 = 0;
+            if (!max120.HasValue) max120 = 500;
+
+            string[,] allStocks = GetAllStocks();
+
+            for (int i = 0; i < allStocks.GetLength(0); i++)
+            {
+                try
+                {
+                    if (min5 <= float.Parse(allStocks[i, 6]) && max5 >= float.Parse(allStocks[i,6]) &&
+                        min20 <= float.Parse(allStocks[i,7]) && max20 >= float.Parse(allStocks[i,7]) &&
+                        min60 <= float.Parse(allStocks[i,8]) && max60 >= float.Parse(allStocks[i,8]) &&
+                        min120<= float.Parse(allStocks[i,9]) && max120 >= float.Parse(allStocks[i,9]))
+                    {
+                        filteringDatas.Add(allStocks[i, 0]);    // 0은 종목 코드
+                        //filteringDatas.Add(allStocks[i, 1]);  // 1은 종목 이름
+                    }
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+        }
+
         private void setQuery(QueryTR tr)
         {
             _giControl.SetQueryName(tr.ToString());
             _curQueryTR = tr;
+        }
+
+        public string[,] GetAllStocks()
+        {
+            string[,] datas = null;
+
+            recvData = null;
+
+            setQuery(QueryTR.TR_1870);
+
+            _giControl.SetSingleData((short)0, "2");
+            _giControl.SetSingleData((short)1, "0");
+            _giControl.SetSingleData((short)2, "0");
+            _giControl.SetSingleData((short)3, "500");
+
+            _giControl.RequestData();
+
+            Debug.WriteLine($"Request Data.");
+
+            timerReceiveTimeOut = new Timer(new TimerCallback(timerTimeOutCallback), null, RECEIVE_TIMEOUT, 1000);
+
+            dataReceiveEvent.WaitOne();
+
+            datas = recvData;
+
+            return datas;
         }
 
         public string[,] GetData(QueryTR tr, params object[] parameters)
@@ -168,11 +232,24 @@ namespace JY.StockChecker
 
             _giControl.RequestData();
 
+            Debug.WriteLine($"Request Data.");
+
+            timerReceiveTimeOut = new Timer(new TimerCallback(timerTimeOutCallback), null, RECEIVE_TIMEOUT, 1000);
+
             dataReceiveEvent.WaitOne();
 
             datas = recvData;
 
             return datas;
+        }
+
+        private void timerTimeOutCallback(object state)
+        {
+            Debug.WriteLine("Receive Timeout.");
+
+            dataReceiveEvent.Set();
+
+            timerReceiveTimeOut.Dispose();
         }
 
         public string GetShortCode(string name)
@@ -185,7 +262,7 @@ namespace JY.StockChecker
             _giControl.RequestRTReg("SC", shortCode);
         }
         
-        protected void ReceivedRTData(string rtType, Stock stock)
+        protected void ReceivedRTData(string rtType, RtScStock stock)
         {
             if (OnReceiveRTData != null)
             {

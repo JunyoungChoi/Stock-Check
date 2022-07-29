@@ -9,7 +9,7 @@ namespace JY.StockChecker
     /// <summary>
     /// SC type
     /// </summary>
-    public class Stock
+    public class RtScStock
     {
         //private int _curPrice = 0;  // 현재가
         //private int _prePrice = 0;  // 전일가
@@ -45,7 +45,7 @@ namespace JY.StockChecker
         public double AverageTradePrice { get { return TradeMoney / (double)TradeVolume; } }  // 평균 체결 가격
 
      
-        public Stock(string shortCode, int curPrice, int prevPrice, long tradeMoney, long tradeVolume, int startPrice, int highPrice, int lowPrice, string highPriceTime, string lowPriceTime, float volumePower)
+        public RtScStock(string shortCode, int curPrice, int prevPrice, long tradeMoney, long tradeVolume, int startPrice, int highPrice, int lowPrice, string highPriceTime, string lowPriceTime, float volumePower)
         {
             this.CurPrice = CurPrice;
             this.PrevPrice = prevPrice;
