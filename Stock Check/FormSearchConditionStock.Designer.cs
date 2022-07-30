@@ -96,12 +96,17 @@ namespace JY.StockChecker
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.indi = new AxGIEXPERTCONTROLLib.AxGiExpertControl();
+            this.axGiExpertControl = new AxGIEXPERTCONTROLLib.AxGiExpertControl();
             this.button_Test = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.groupBox_Disparity = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBox_UseDisparity = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel_DisparityCondition = new System.Windows.Forms.TableLayoutPanel();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Egyukdo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -114,8 +119,11 @@ namespace JY.StockChecker
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Step)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.indi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axGiExpertControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox_Disparity.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel_DisparityCondition.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_Egyukdo
@@ -283,42 +291,51 @@ namespace JY.StockChecker
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(654, 104);
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(105, 27);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(14, 12);
+            this.label8.Size = new System.Drawing.Size(14, 27);
             this.label8.TabIndex = 30;
             this.label8.Text = "~";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(654, 132);
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(105, 54);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(14, 12);
+            this.label7.Size = new System.Drawing.Size(14, 27);
             this.label7.TabIndex = 29;
             this.label7.Text = "~";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(654, 163);
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Location = new System.Drawing.Point(105, 81);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 12);
+            this.label6.Size = new System.Drawing.Size(14, 27);
             this.label6.TabIndex = 28;
             this.label6.Text = "~";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(654, 77);
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(105, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(14, 12);
+            this.label5.Size = new System.Drawing.Size(14, 27);
             this.label5.TabIndex = 27;
             this.label5.Text = "~";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBox_max120
             // 
-            this.textBox_max120.Location = new System.Drawing.Point(670, 158);
+            this.textBox_max120.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_max120.Location = new System.Drawing.Point(125, 84);
             this.textBox_max120.Name = "textBox_max120";
             this.textBox_max120.Size = new System.Drawing.Size(55, 21);
             this.textBox_max120.TabIndex = 26;
@@ -326,21 +343,24 @@ namespace JY.StockChecker
             // 
             // textBox_min120
             // 
-            this.textBox_min120.Location = new System.Drawing.Point(597, 158);
+            this.textBox_min120.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_min120.Location = new System.Drawing.Point(44, 84);
             this.textBox_min120.Name = "textBox_min120";
             this.textBox_min120.Size = new System.Drawing.Size(55, 21);
             this.textBox_min120.TabIndex = 25;
             // 
             // textBox_max60
             // 
-            this.textBox_max60.Location = new System.Drawing.Point(670, 127);
+            this.textBox_max60.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_max60.Location = new System.Drawing.Point(125, 57);
             this.textBox_max60.Name = "textBox_max60";
             this.textBox_max60.Size = new System.Drawing.Size(55, 21);
             this.textBox_max60.TabIndex = 24;
             // 
             // textBox_min60
             // 
-            this.textBox_min60.Location = new System.Drawing.Point(597, 127);
+            this.textBox_min60.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_min60.Location = new System.Drawing.Point(44, 57);
             this.textBox_min60.Name = "textBox_min60";
             this.textBox_min60.Size = new System.Drawing.Size(55, 21);
             this.textBox_min60.TabIndex = 23;
@@ -348,14 +368,16 @@ namespace JY.StockChecker
             // 
             // textBox_max20
             // 
-            this.textBox_max20.Location = new System.Drawing.Point(670, 99);
+            this.textBox_max20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_max20.Location = new System.Drawing.Point(125, 30);
             this.textBox_max20.Name = "textBox_max20";
             this.textBox_max20.Size = new System.Drawing.Size(55, 21);
             this.textBox_max20.TabIndex = 22;
             // 
             // textBox_min20
             // 
-            this.textBox_min20.Location = new System.Drawing.Point(597, 99);
+            this.textBox_min20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_min20.Location = new System.Drawing.Point(44, 30);
             this.textBox_min20.Name = "textBox_min20";
             this.textBox_min20.Size = new System.Drawing.Size(55, 21);
             this.textBox_min20.TabIndex = 21;
@@ -363,7 +385,8 @@ namespace JY.StockChecker
             // 
             // textBox_max5
             // 
-            this.textBox_max5.Location = new System.Drawing.Point(670, 72);
+            this.textBox_max5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_max5.Location = new System.Drawing.Point(125, 3);
             this.textBox_max5.Name = "textBox_max5";
             this.textBox_max5.Size = new System.Drawing.Size(55, 21);
             this.textBox_max5.TabIndex = 20;
@@ -371,7 +394,8 @@ namespace JY.StockChecker
             // 
             // textBox_min5
             // 
-            this.textBox_min5.Location = new System.Drawing.Point(597, 72);
+            this.textBox_min5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_min5.Location = new System.Drawing.Point(44, 3);
             this.textBox_min5.Name = "textBox_min5";
             this.textBox_min5.Size = new System.Drawing.Size(55, 21);
             this.textBox_min5.TabIndex = 19;
@@ -380,43 +404,51 @@ namespace JY.StockChecker
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(555, 163);
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 81);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 12);
+            this.label4.Size = new System.Drawing.Size(35, 27);
             this.label4.TabIndex = 18;
             this.label4.Text = "120일";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(561, 132);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 54);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.Size = new System.Drawing.Size(35, 27);
             this.label3.TabIndex = 17;
             this.label3.Text = "60일";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(561, 105);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.Size = new System.Drawing.Size(35, 27);
             this.label2.TabIndex = 16;
             this.label2.Text = "20일";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(567, 77);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 12);
+            this.label1.Size = new System.Drawing.Size(35, 27);
             this.label1.TabIndex = 15;
             this.label1.Text = "5일";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox2.Location = new System.Drawing.Point(575, 519);
+            this.groupBox2.Location = new System.Drawing.Point(1035, 59);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(466, 291);
             this.groupBox2.TabIndex = 17;
@@ -755,14 +787,14 @@ namespace JY.StockChecker
             this.radioButton1.Text = "360";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // indi
+            // axGiExpertControl
             // 
-            this.indi.Enabled = true;
-            this.indi.Location = new System.Drawing.Point(187, 262);
-            this.indi.Name = "indi";
-            this.indi.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("indi.OcxState")));
-            this.indi.Size = new System.Drawing.Size(170, 63);
-            this.indi.TabIndex = 13;
+            this.axGiExpertControl.Enabled = true;
+            this.axGiExpertControl.Location = new System.Drawing.Point(265, 460);
+            this.axGiExpertControl.Name = "axGiExpertControl";
+            this.axGiExpertControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axGiExpertControl.OcxState")));
+            this.axGiExpertControl.Size = new System.Drawing.Size(170, 63);
+            this.axGiExpertControl.TabIndex = 13;
             // 
             // button_Test
             // 
@@ -796,7 +828,7 @@ namespace JY.StockChecker
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(361, 135);
+            this.dataGridView1.Location = new System.Drawing.Point(1035, 392);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(240, 101);
@@ -809,11 +841,96 @@ namespace JY.StockChecker
             this.textBox2.Size = new System.Drawing.Size(100, 21);
             this.textBox2.TabIndex = 51;
             // 
+            // groupBox_Disparity
+            // 
+            this.groupBox_Disparity.Controls.Add(this.tableLayoutPanel3);
+            this.groupBox_Disparity.Location = new System.Drawing.Point(578, 34);
+            this.groupBox_Disparity.Name = "groupBox_Disparity";
+            this.groupBox_Disparity.Size = new System.Drawing.Size(232, 155);
+            this.groupBox_Disparity.TabIndex = 52;
+            this.groupBox_Disparity.TabStop = false;
+            this.groupBox_Disparity.Text = "이격도";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.checkBox_UseDisparity, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel_DisparityCondition, 0, 1);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(26, 20);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(189, 136);
+            this.tableLayoutPanel3.TabIndex = 54;
+            // 
+            // checkBox_UseDisparity
+            // 
+            this.checkBox_UseDisparity.AutoSize = true;
+            this.checkBox_UseDisparity.Location = new System.Drawing.Point(3, 3);
+            this.checkBox_UseDisparity.Name = "checkBox_UseDisparity";
+            this.checkBox_UseDisparity.Size = new System.Drawing.Size(48, 16);
+            this.checkBox_UseDisparity.TabIndex = 54;
+            this.checkBox_UseDisparity.Text = "사용";
+            this.checkBox_UseDisparity.UseVisualStyleBackColor = true;
+            this.checkBox_UseDisparity.CheckedChanged += new System.EventHandler(this.checkBox_UseDIsparity_CheckedChanged);
+            // 
+            // tableLayoutPanel_DisparityCondition
+            // 
+            this.tableLayoutPanel_DisparityCondition.AutoSize = true;
+            this.tableLayoutPanel_DisparityCondition.ColumnCount = 4;
+            this.tableLayoutPanel_DisparityCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel_DisparityCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel_DisparityCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel_DisparityCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.textBox_max5, 3, 0);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.textBox_min5, 1, 0);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.textBox_max20, 3, 1);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.textBox_max60, 3, 2);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.label8, 2, 1);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.textBox_max120, 3, 3);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.label7, 2, 2);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.label6, 2, 3);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.textBox_min20, 1, 1);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.label4, 0, 3);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.label5, 2, 0);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.textBox_min60, 1, 2);
+            this.tableLayoutPanel_DisparityCondition.Controls.Add(this.textBox_min120, 1, 3);
+            this.tableLayoutPanel_DisparityCondition.Enabled = false;
+            this.tableLayoutPanel_DisparityCondition.Location = new System.Drawing.Point(3, 25);
+            this.tableLayoutPanel_DisparityCondition.Name = "tableLayoutPanel_DisparityCondition";
+            this.tableLayoutPanel_DisparityCondition.RowCount = 4;
+            this.tableLayoutPanel_DisparityCondition.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_DisparityCondition.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_DisparityCondition.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_DisparityCondition.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_DisparityCondition.Size = new System.Drawing.Size(183, 108);
+            this.tableLayoutPanel_DisparityCondition.TabIndex = 53;
+            this.tableLayoutPanel_DisparityCondition.EnabledChanged += new System.EventHandler(this.tableLayoutPanel_DisparityCondition_EnabledChanged);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button2.Location = new System.Drawing.Point(816, 188);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 53;
+            this.button2.Text = "Sequence";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormSearchConditionStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(368, 308);
+            this.ClientSize = new System.Drawing.Size(1199, 567);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.groupBox_Disparity);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox1);
@@ -822,28 +939,12 @@ namespace JY.StockChecker
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.dataGridView_Step);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.button_Sequence);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.dataGridView_Recommand);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.textBox_max120);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox_min120);
-            this.Controls.Add(this.indi);
-            this.Controls.Add(this.textBox_max60);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox_min60);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox_max20);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox_min20);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox_max5);
-            this.Controls.Add(this.textBox_min5);
+            this.Controls.Add(this.axGiExpertControl);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormSearchConditionStock";
@@ -865,15 +966,21 @@ namespace JY.StockChecker
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.indi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axGiExpertControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox_Disparity.ResumeLayout(false);
+            this.groupBox_Disparity.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel_DisparityCondition.ResumeLayout(false);
+            this.tableLayoutPanel_DisparityCondition.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private AxGIEXPERTCONTROLLib.AxGiExpertControl indi;
+        private AxGIEXPERTCONTROLLib.AxGiExpertControl axGiExpertControl;
         private System.Windows.Forms.Button button_Egyukdo;
         private System.Windows.Forms.DataGridView dataGridView_Egyukdo;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -942,6 +1049,11 @@ namespace JY.StockChecker
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox groupBox_Disparity;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_DisparityCondition;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.CheckBox checkBox_UseDisparity;
     }
 }
 

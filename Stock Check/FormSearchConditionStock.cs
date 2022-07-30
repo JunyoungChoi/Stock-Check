@@ -18,6 +18,8 @@ namespace JY.StockChecker
 {
     public partial class FormSearchConditionStock : Form
     {
+        private GiController _giController;
+
         private Label forAck;
 
         #region enum
@@ -43,8 +45,6 @@ namespace JY.StockChecker
         PointF minMax60;
         PointF minMax120;
         float tradingMoneyVolume;
-
-
         public Dictionary<string, string[]> TradingMoneyVolume;
 
         private Dictionary<string, int> gamsiList;
@@ -88,23 +88,23 @@ namespace JY.StockChecker
             ReceiveData = new List<string[]>();
             Egyukdo = new Dictionary<string, string[]>();
             TradingMoneyVolume = new Dictionary<string, string[]>();
-            indi.ReceiveData += Indi_ReceiveData;
+            axGiExpertControl.ReceiveData += Indi_ReceiveData;
 
-            formRTGamsi = new FormRTCheck(this.indi);
+            formRTGamsi = new FormRTCheck(this.axGiExpertControl);
 
             StopRTGamsi += formRTGamsi.FormRTGamsi_StopGamsi;
         }
 
         private void button_Test_Click(object sender, EventArgs e)
         {
-            indi.RequestRTReg("SC", textBox1.Text);
+            axGiExpertControl.RequestRTReg("SC", textBox1.Text);
         }
 
         private void Indi_ReceiveData(object sender, _DGiExpertControlEvents_ReceiveDataEvent e)
         {
             Debug.WriteLine("Indi_ReceiveData");
 
-            int row = indi.GetMultiRowCount();
+            int row = axGiExpertControl.GetMultiRowCount();
             int column = DataLength;
 
             ReceiveData.Clear();
@@ -115,7 +115,7 @@ namespace JY.StockChecker
 
                 for (int j = 0; j < column; j++)
                 {
-                    data[j] = indi.GetMultiData((short)i, (short)j).ToString();
+                    data[j] = axGiExpertControl.GetMultiData((short)i, (short)j).ToString();
                 }
 
                 ReceiveData.Add(data);
@@ -127,7 +127,7 @@ namespace JY.StockChecker
 
         private void SetQuery(TR query)
         {
-            indi.SetQueryName(query.ToString());
+            axGiExpertControl.SetQueryName(query.ToString());
             _currentTR = query;
         }
 
@@ -135,7 +135,7 @@ namespace JY.StockChecker
         {
             for (int i = 0; i < parameters.Length; i++)
             {
-                indi.SetSingleData((short)i, parameters[i].ToString());
+                axGiExpertControl.SetSingleData((short)i, parameters[i].ToString());
             }
         }
 
@@ -143,7 +143,7 @@ namespace JY.StockChecker
         {
             Debug.WriteLine("Request");
 
-            indi.RequestData();
+            axGiExpertControl.RequestData();
         }
 
         
@@ -257,6 +257,8 @@ namespace JY.StockChecker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            _giController = new GiController(this.axGiExpertControl);
+
             dataGridView_Step.Rows[0].Cells[0].Value = "No";
 
             forAck = new Label();
@@ -863,7 +865,28 @@ namespace JY.StockChecker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            indi.UnRequestRTRegAll();
+            axGiExpertControl.UnRequestRTRegAll();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox_UseDIsparity_CheckedChanged(object sender, EventArgs e)
+        {
+            tableLayoutPanel_DisparityCondition.Enabled = checkBox_UseDisparity.Checked; 
+        }
+
+        private void tableLayoutPanel_DisparityCondition_EnabledChanged(object sender, EventArgs e)
+        {
+            foreach (var control in tableLayoutPanel_DisparityCondition.Controls)
+            {
+                if (control.GetType() == typeof(TextBox))
+                {
+                    ((TextBox)control).ReadOnly = tableLayoutPanel_DisparityCondition.Enabled;
+                }
+            }
         }
     }
 

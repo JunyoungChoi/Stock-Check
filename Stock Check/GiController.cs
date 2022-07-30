@@ -10,6 +10,13 @@ using GIEXPERTCONTROLLib;
 
 namespace JY.StockChecker
 {
+    public enum QueryTR
+    {
+        TR_1206,    // 종목별 기간 거래량 투자자별 고/저가 확인
+        TR_1870,    // 이격도
+        TR_SCHART,  // 시간별 체결량 및 거래대금
+    }
+
     class GiController
     {
         private bool _isLogin = false;
@@ -46,12 +53,7 @@ namespace JY.StockChecker
             VolumePower = 24,
         }
 
-        public enum QueryTR
-        {
-            TR_1206,    // 종목별 기간 거래량 투자자별 고/저가 확인
-            TR_1870,    // 이격도
-            TR_SCHART,  // 시간별 체결량 및 거래대금
-        }
+       
 
         public bool IsLogin { get { return _isLogin; } }
 
@@ -183,6 +185,8 @@ namespace JY.StockChecker
                     continue;
                 }
             }
+
+            return filteringDatas;
         }
 
         private void setQuery(QueryTR tr)
