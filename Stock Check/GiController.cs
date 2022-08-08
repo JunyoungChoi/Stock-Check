@@ -165,16 +165,16 @@ namespace JY.StockChecker
             if (!min120.HasValue) min120 = 0;
             if (!max120.HasValue) max120 = 500;
 
-            string[,] allStocks = GetAllStocks();
+            string[,] allStocks = GetAllStocksWithDisparity();
 
             for (int i = 0; i < allStocks.GetLength(0); i++)
             {
                 try
                 {
-                    if (min5 <= float.Parse(allStocks[i, 6]) && max5 >= float.Parse(allStocks[i,6]) &&
-                        min20 <= float.Parse(allStocks[i,7]) && max20 >= float.Parse(allStocks[i,7]) &&
-                        min60 <= float.Parse(allStocks[i,8]) && max60 >= float.Parse(allStocks[i,8]) &&
-                        min120<= float.Parse(allStocks[i,9]) && max120 >= float.Parse(allStocks[i,9]))
+                    if (min5 <= float.Parse(allStocks[i, 6]) && max5 >= float.Parse(allStocks[i, 6]) &&
+                        min20 <= float.Parse(allStocks[i, 7]) && max20 >= float.Parse(allStocks[i, 7]) &&
+                        min60 <= float.Parse(allStocks[i, 8]) && max60 >= float.Parse(allStocks[i, 8]) &&
+                        min120 <= float.Parse(allStocks[i, 9]) && max120 >= float.Parse(allStocks[i, 9]))
                     {
                         filteringDatas.Add(allStocks[i, 0]);    // 0은 종목 코드
                         //filteringDatas.Add(allStocks[i, 1]);  // 1은 종목 이름
@@ -195,7 +195,7 @@ namespace JY.StockChecker
             _curQueryTR = tr;
         }
 
-        public string[,] GetAllStocks()
+        public string[,] GetAllStocksWithDisparity()
         {
             string[,] datas = null;
 

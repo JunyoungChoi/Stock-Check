@@ -207,7 +207,7 @@ namespace JY.StockChecker
             #endregion
         }
 
-        private void GetWholeStock()
+        private void getWholeStock()
         {
             #region 이격도 조건 request  TR_1870
             SetQuery(TR.TR_1870);
@@ -811,7 +811,7 @@ namespace JY.StockChecker
             this.tradingMoneyVolume = tradingMoneyVolume;
             #endregion
 
-            GetWholeStock();
+            getWholeStock();
         }
 
         private void chart1_MouseDown(object sender, MouseEventArgs e)
