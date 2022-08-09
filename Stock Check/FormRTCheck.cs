@@ -76,9 +76,9 @@ namespace JY.StockChecker
 
         private void LoadLastJongmoks()
         {
-            List<RtScStock> jongmoks = ini.LoadLastJongmoks();
+            List<ScStock> jongmoks = ini.LoadLastJongmoks();
 
-            foreach (RtScStock jongmok in jongmoks)
+            foreach (ScStock jongmok in jongmoks)
             {
                 gamsiList.Rows.Add(jongmok.Name, jongmok.ShortCode, jongmok.Price, 0, jongmok.LastPrice);
 
@@ -88,7 +88,7 @@ namespace JY.StockChecker
 
         private void SaveLastJongmoks()
         {
-            List<RtScStock> jongmoks = new List<RtScStock>();
+            List<ScStock> jongmoks = new List<ScStock>();
 
             foreach (DataRow dataRow in gamsiList.Rows)
             {

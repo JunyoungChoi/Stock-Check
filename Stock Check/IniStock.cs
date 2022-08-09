@@ -13,7 +13,7 @@ namespace JY.StockChecker
             
         }
 
-        public void SaveLastStocks(int count, List<RtScStock> jongmoks)
+        public void SaveLastStocks(int count, List<ScStock> jongmoks)
         {
             IniWriteValue("Stock", "Count", count.ToString());
 
@@ -31,9 +31,9 @@ namespace JY.StockChecker
             IniWriteValue("Stock", "LastDate", DateTime.Now.ToString("MMdd_HHmm"));
         }
 
-        public List<RtScStock> LoadLastJongmoks()
+        public List<ScStock> LoadLastJongmoks()
         {
-            List<RtScStock> stocks = new List<RtScStock>();
+            List<ScStock> stocks = new List<ScStock>();
 
             int count = 0;
 

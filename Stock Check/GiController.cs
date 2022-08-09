@@ -10,11 +10,32 @@ using GIEXPERTCONTROLLib;
 
 namespace JY.StockChecker
 {
+    public enum TR1206DataType
+    {
+        TradingVolume = 0,
+        TradingMoney = 1,
+    }
+
     public enum QueryTR
     {
         TR_1206,    // 종목별 기간 거래량 투자자별 고/저가 확인
         TR_1870,    // 이격도
         TR_SCHART,  // 시간별 체결량 및 거래대금
+    }
+
+    public enum StockKind
+    {
+        KOSPI = 0,
+        KOSDAQ = 1,
+        All = 2,
+    }
+
+    public enum DisparityKind
+    {
+        Five = 0,
+        Twenty = 1,
+        Sixty = 2,
+        HundredTwenty = 3,
     }
 
     class GiController
@@ -27,7 +48,7 @@ namespace JY.StockChecker
 
         private AutoResetEvent dataReceiveEvent = new AutoResetEvent(false);
 
-        public delegate void ReceiveRTDataHandler(string rtType, RtScStock stock);
+        public delegate void ReceiveRTDataHandler(string rtType, ScStock stock);
         public event ReceiveRTDataHandler OnReceiveRTData;
 
         private QueryTR _curQueryTR;
@@ -134,7 +155,7 @@ namespace JY.StockChecker
                         //string lowPriceTime = _giControl.GetSingleData((short)ColumnSC.LowPriceTime).ToString();
                         //float volumePower = (float)_giControl.GetSingleData((short)ColumnSC.VolumePower);
 
-                        RtScStock stock = new RtScStock(shortCode, curPrice, prevPrice, tradingMoney, tradingVolume, startPrice, highPrice, lowPrice, highPriceTime, lowPriceTime, volumePower);
+                        ScStock stock = new ScStock(shortCode, curPrice, prevPrice, tradingMoney, tradingVolume, startPrice, highPrice, lowPrice, highPriceTime, lowPriceTime, volumePower);
 
                         ReceivedRTData(rtType, stock);
                     }
@@ -152,7 +173,7 @@ namespace JY.StockChecker
             }
         }
 
-        public List<string> FilteringStockDisparity(float? min5, float? max5, float? min20, float? max20, float? min60, float? max60, float? min120, float? max120)
+        public List<string> FilteringStockDisparity(StockKind stockKind, float? min5, float? max5, float? min20, float? max20, float? min60, float? max60, float? min120, float? max120)
         {
             List<string> filteringDatas = new List<string>();
 
@@ -165,7 +186,7 @@ namespace JY.StockChecker
             if (!min120.HasValue) min120 = 0;
             if (!max120.HasValue) max120 = 500;
 
-            string[,] allStocks = GetAllStocksWithDisparity();
+            string[,] allStocks = GetStocksWithDisparity(stockKind);
 
             for (int i = 0; i < allStocks.GetLength(0); i++)
             {
@@ -189,24 +210,76 @@ namespace JY.StockChecker
             return filteringDatas;
         }
 
+        public List<string> FilteringStockTradingVolume(List<string> shortCodes, TR1206DataType dataType, DateTime fromDateTime, DateTime toDateTime, int? minTradingVolume, int? maxTradingVolume)
+        {
+            List<string> filteringResults = new List<string>();
+
+            if (!minTradingVolume.HasValue) minTradingVolume = 0;
+            if (!maxTradingVolume.HasValue) maxTradingVolume = int.MaxValue;
+
+            if (toDateTime > DateTime.Now)
+            {
+                toDateTime = DateTime.Now;
+            }
+
+            if (fromDateTime > toDateTime)
+            {
+                fromDateTime = toDateTime;
+            }
+
+            foreach (string shortCode in shortCodes)
+            {
+                setParameterTR1206(shortCode, fromDateTime, toDateTime, dataType);
+
+                GetData()
+            }
+
+
+            return filteringResults;
+        }
+
         private void setQuery(QueryTR tr)
         {
             _giControl.SetQueryName(tr.ToString());
             _curQueryTR = tr;
         }
 
-        public string[,] GetAllStocksWithDisparity()
+        private void setParameterTR1206(string shortCode, DateTime fromDate, DateTime toDate, TR1206DataType dataType)
+        {
+            setQuery(QueryTR.TR_1206);
+
+            _giControl.SetSingleData((short)0, shortCode);
+            _giControl.SetSingleData((short)1, fromDate.ToString("YYYYMMdd"));
+            _giControl.SetSingleData((short)2, toDate.ToString("YYYYMMdd"));
+            _giControl.SetSingleData((short)3, "0");
+            _giControl.SetSingleData((short)4, ((int)dataType).ToString());
+        }
+
+        private void setParameterTR1870(StockKind stockKind, DisparityKind disparityKind, float? minDIsparity, float? maxDisparity)
+        {
+            setQuery(QueryTR.TR_1870);
+
+            if (!minDIsparity.HasValue) minDIsparity = 0;
+            if (!maxDisparity.HasValue) maxDisparity = 500;
+
+            _giControl.SetSingleData((short)0, ((int)stockKind).ToString());
+            _giControl.SetSingleData((short)1, ((int)disparityKind).ToString());
+            _giControl.SetSingleData((short)2, minDIsparity.Value.ToString());
+            _giControl.SetSingleData((short)3, maxDisparity.Value.ToString());
+        }
+
+        public string[,] GetStocksWithDisparity(StockKind stockKind)
         {
             string[,] datas = null;
 
             recvData = null;
 
-            setQuery(QueryTR.TR_1870);
-
-            _giControl.SetSingleData((short)0, "2");
-            _giControl.SetSingleData((short)1, "0");
-            _giControl.SetSingleData((short)2, "0");
-            _giControl.SetSingleData((short)3, "500");
+            setParameterTR1870(stockKind, DisparityKind.Five, null, null);
+            //setQuery(QueryTR.TR_1870);
+            //_giControl.SetSingleData((short)0, "2");
+            //_giControl.SetSingleData((short)1, "0");
+            //_giControl.SetSingleData((short)2, "0");
+            //_giControl.SetSingleData((short)3, "500");
 
             _giControl.RequestData();
 
@@ -266,7 +339,7 @@ namespace JY.StockChecker
             _giControl.RequestRTReg("SC", shortCode);
         }
         
-        protected void ReceivedRTData(string rtType, RtScStock stock)
+        protected void ReceivedRTData(string rtType, ScStock stock)
         {
             if (OnReceiveRTData != null)
             {

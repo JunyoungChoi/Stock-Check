@@ -102,7 +102,7 @@
     <Compile Include="IniStock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RtScStock.cs" />
+    <Compile Include="ScStock.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="FormConfig.resx">
       <DependentUpon>FormConfig.cs</DependentUpon>

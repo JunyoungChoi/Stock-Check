@@ -107,6 +107,9 @@ namespace JY.StockChecker
             this.checkBox_UseDisparity = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel_DisparityCondition = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
+            this.tabControl_Algorithm = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Egyukdo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -124,6 +127,8 @@ namespace JY.StockChecker
             this.groupBox_Disparity.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel_DisparityCondition.SuspendLayout();
+            this.tabControl_Algorithm.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_Egyukdo
@@ -790,7 +795,7 @@ namespace JY.StockChecker
             // axGiExpertControl
             // 
             this.axGiExpertControl.Enabled = true;
-            this.axGiExpertControl.Location = new System.Drawing.Point(265, 460);
+            this.axGiExpertControl.Location = new System.Drawing.Point(288, 506);
             this.axGiExpertControl.Name = "axGiExpertControl";
             this.axGiExpertControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axGiExpertControl.OcxState")));
             this.axGiExpertControl.Size = new System.Drawing.Size(170, 63);
@@ -844,7 +849,7 @@ namespace JY.StockChecker
             // groupBox_Disparity
             // 
             this.groupBox_Disparity.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox_Disparity.Location = new System.Drawing.Point(578, 34);
+            this.groupBox_Disparity.Location = new System.Drawing.Point(25, 18);
             this.groupBox_Disparity.Name = "groupBox_Disparity";
             this.groupBox_Disparity.Size = new System.Drawing.Size(232, 155);
             this.groupBox_Disparity.TabIndex = 52;
@@ -924,13 +929,44 @@ namespace JY.StockChecker
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // tabControl_Algorithm
+            // 
+            this.tabControl_Algorithm.Controls.Add(this.tabPage1);
+            this.tabControl_Algorithm.Controls.Add(this.tabPage2);
+            this.tabControl_Algorithm.Location = new System.Drawing.Point(569, 29);
+            this.tabControl_Algorithm.Name = "tabControl_Algorithm";
+            this.tabControl_Algorithm.SelectedIndex = 0;
+            this.tabControl_Algorithm.Size = new System.Drawing.Size(336, 207);
+            this.tabControl_Algorithm.TabIndex = 54;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox_Disparity);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(328, 181);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "이격도";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(328, 181);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // FormSearchConditionStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1199, 567);
+            this.Controls.Add(this.tabControl_Algorithm);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.groupBox_Disparity);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox1);
@@ -974,6 +1010,8 @@ namespace JY.StockChecker
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel_DisparityCondition.ResumeLayout(false);
             this.tableLayoutPanel_DisparityCondition.PerformLayout();
+            this.tabControl_Algorithm.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1054,6 +1092,9 @@ namespace JY.StockChecker
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.CheckBox checkBox_UseDisparity;
+        private System.Windows.Forms.TabControl tabControl_Algorithm;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 
