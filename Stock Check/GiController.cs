@@ -227,13 +227,26 @@ namespace JY.StockChecker
                 fromDateTime = toDateTime;
             }
 
+            string[,] datas = null;
+
             foreach (string shortCode in shortCodes)
             {
                 setParameterTR1206(shortCode, fromDateTime, toDateTime, dataType);
 
-                GetData()
-            }
+                _giControl.RequestData();
 
+                Debug.WriteLine("Request Data.");
+
+                timerReceiveTimeOut = new Timer(new TimerCallback(timerTimeOutCallback), null, RECEIVE_TIMEOUT, 1000);
+
+                dataReceiveEvent.WaitOne();
+
+                datas = recvData;
+
+                // 필터링 할 것
+
+                throw new NotImplementedException();
+            }
 
             return filteringResults;
         }
