@@ -210,7 +210,7 @@ namespace JY.StockChecker
             return filteringDatas;
         }
 
-        public List<string> FilteringStockTradingVolume(List<string> shortCodes, TR1206DataType dataType, DateTime fromDateTime, DateTime toDateTime, int? minTradingVolume, int? maxTradingVolume)
+        public List<string> FilteringStockTradingVolume(List<string> shortCodes, TR1206DataType dataType, DateTime fromDateTime, DateTime toDateTime, long? minTradingVolume, long? maxTradingVolume)
         {
             List<string> filteringResults = new List<string>();
 
